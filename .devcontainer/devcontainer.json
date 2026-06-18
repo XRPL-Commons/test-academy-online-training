@@ -13,7 +13,8 @@
   },
 
   "onCreateCommand": "bash .devcontainer/setup.sh",
-  "postStartCommand": "node scripts/mint-wallets.js && $HOME/.local/bin/xrpl-start-progress-watcher \"$PWD\"",
+  "postStartCommand": "node scripts/mint-wallets.js; nohup node $HOME/.xrpl-academy/progress-watcher.js /workspaces/dev-training-june-2026 > /tmp/progress-watcher.log 2>&1 &",
+  "postAttachCommand": "echo '\\n✅ XRPL Academy ready! Your wallets are in wallets.json\\n' && cat wallets.json | node -e \"const w=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).wallets; console.log('  Wallet 1: '+w[0].address); console.log('  Wallet 2: '+w[1].address); console.log()\"",
 
   "customizations": {
     "vscode": {
