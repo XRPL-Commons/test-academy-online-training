@@ -10,6 +10,7 @@
 
 const xrpl = require('xrpl');
 const fs = require('fs');
+const { notifyProgress } = require('../../scripts/notify');
 
 const TESTNET_URL = 'wss://s.altnet.rippletest.net:51233';
 
@@ -37,6 +38,7 @@ async function main() {
 
   console.log('Default Ripple enabled on issuer account!');
   console.log(`\nExplorer: https://testnet.xrpl.org/accounts/${issuerWallet.address}`);
+  await notifyProgress('Day 2 Step 1: Setup Account');
   await client.disconnect();
 }
 

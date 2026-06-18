@@ -19,6 +19,8 @@ from xrpl.models.requests import AMMInfo
 from xrpl.models.currencies import IssuedCurrency, XRP
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import xrp_to_drops
+import sys; sys.path.insert(0, '../../scripts')
+from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
 
@@ -57,3 +59,4 @@ with WebsocketClient(TESTNET_URL) as client:
 
 # Explorer: https://testnet.xrpl.org/accounts/{address}
 print(f"\nExplorer: https://testnet.xrpl.org/accounts/{issuer.address}")
+notify_progress('Day 2 Step 3: Create AMM')

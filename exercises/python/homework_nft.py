@@ -18,6 +18,8 @@ from xrpl.models.transactions import NFTokenMint, NFTokenBurn
 from xrpl.models.requests import AccountNFTs
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import str_to_hex
+import sys; sys.path.insert(0, '../../scripts')
+from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
 
@@ -69,3 +71,4 @@ with WebsocketClient(TESTNET_URL) as client:
 
 # Explorer: https://testnet.xrpl.org/accounts/{address}/nfts
 print(f"\nExplorer: https://testnet.xrpl.org/accounts/{wallet.address}/nfts")
+notify_progress('Homework: NFT Lifecycle')

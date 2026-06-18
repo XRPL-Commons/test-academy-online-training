@@ -18,6 +18,7 @@
 
 const xrpl = require('xrpl');
 const fs = require('fs');
+const { notifyProgress } = require('../../scripts/notify');
 
 const TESTNET_URL = 'wss://s.altnet.rippletest.net:51233';
 
@@ -69,6 +70,7 @@ async function main() {
   // YOUR CODE HERE
 
   console.log(`\nExplorer: https://testnet.xrpl.org/accounts/${issuerWallet.address}`);
+  await notifyProgress('Day 2 Step 3: Create AMM');
   await client.disconnect();
 }
 

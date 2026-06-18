@@ -14,6 +14,8 @@ from xrpl.clients import WebsocketClient
 from xrpl.wallet import Wallet
 from xrpl.models.transactions import AccountSet
 from xrpl.transaction import submit_and_wait
+import sys; sys.path.insert(0, '../../scripts')
+from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
 
@@ -38,3 +40,4 @@ with WebsocketClient(TESTNET_URL) as client:
 
 # Explorer: https://testnet.xrpl.org/accounts/{address}
 print(f"\nExplorer: https://testnet.xrpl.org/accounts/{issuer.address}")
+notify_progress('Day 2 Step 1: Setup Account')

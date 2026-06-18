@@ -16,6 +16,8 @@ from xrpl.wallet import Wallet
 from xrpl.models.transactions import TrustSet, Payment
 from xrpl.models.amounts import IssuedCurrencyAmount
 from xrpl.transaction import submit_and_wait
+import sys; sys.path.insert(0, '../../scripts')
+from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
 
@@ -58,3 +60,4 @@ with WebsocketClient(TESTNET_URL) as client:
 # Explorer: https://testnet.xrpl.org/accounts/{address}
 print(f"\nExplorer (issuer): https://testnet.xrpl.org/accounts/{issuer.address}")
 print(f"Explorer (holder): https://testnet.xrpl.org/accounts/{holder.address}")
+notify_progress('Day 2 Step 2: Issue Token')

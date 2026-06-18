@@ -15,6 +15,8 @@ from xrpl.wallet import Wallet
 from xrpl.models.transactions import Payment
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import xrp_to_drops
+import sys; sys.path.insert(0, '../../scripts')
+from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
 
@@ -51,3 +53,4 @@ with WebsocketClient(TESTNET_URL) as client:
 # Explorer: https://testnet.xrpl.org/accounts/{address}
 print(f"\nCheck sender:   https://testnet.xrpl.org/accounts/{sender.address}")
 print(f"Check receiver: https://testnet.xrpl.org/accounts/{receiver.address}")
+notify_progress('Day 1: Send XRP')

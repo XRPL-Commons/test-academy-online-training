@@ -10,6 +10,7 @@
 
 const xrpl = require('xrpl');
 const fs = require('fs');
+const { notifyProgress } = require('../../scripts/notify');
 
 const TESTNET_URL = 'wss://s.altnet.rippletest.net:51233';
 
@@ -54,6 +55,7 @@ async function main() {
   console.log(`Receiver balance after: ${balanceAfter} XRP`);
 
   console.log(`\nExplorer: https://testnet.xrpl.org/accounts/${senderWallet.address}`);
+  await notifyProgress('Day 1: Send XRP');
   await client.disconnect();
 }
 
