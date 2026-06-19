@@ -55,7 +55,7 @@ After startup, `wallets.json` contains two funded Testnet wallets:
 - **Wallet 1:** sender, issuer, minter
 - **Wallet 2:** receiver, holder
 
-If your Codespace is stopped and restarted between exercises, do not re-run the mint script, your existing `wallets.json` will still be valid and your on-chain state (trust lines, etc.) will be preserved.
+If your Codespace is stopped and restarted between exercises, it will re-mint wallets and overwrite `wallets.json`. To preserve continuity (trust lines, etc.), avoid restarting, or keep a copy of your previous `wallets.json` and restore it after restart.
 
 > ⚠️ **Important:**
 > - These are Testnet wallets only
