@@ -18,7 +18,7 @@ This repository is the hands-on environment for the XRPL Commons developer train
 │   ├── js/               JavaScript exercises
 │   ├── python/           Python exercises
 │   └── java/             Java exercises
-├── wallets.json          Auto-generated on first Codespace start
+├── wallets.json          Auto-generated on Codespace start
 └── README.md
 ```
 
