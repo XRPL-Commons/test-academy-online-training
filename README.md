@@ -1,8 +1,8 @@
 # XRPL Developer Training — June 22–23, 2026
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/XRPL-Commons/dev-training-june-2026-ts?geo=EuropeWest)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/XRPL-Commons/dev-training-june-2026?geo=EuropeWest)
 
-This repository is the hands-on environment for the XRPL Commons developer training. Participants work from scaffolded TypeScript exercises and verify their results live on the XRPL Testnet.
+This repository is the hands-on environment for the XRPL Commons developer training. Participants work from scaffolded exercises in their language of choice and verify their results live on the XRPL Testnet.
 
 > ⏳ **Heads up:** Opening a Codespace for the first time can take several minutes. Click the button above as soon as you can and let it load in the background while the session intro is running.
 
@@ -13,14 +13,16 @@ This repository is the hands-on environment for the XRPL Commons developer train
 ```
 .
 ├── .devcontainer/        Codespaces setup
-├── scripts/              Wallet minting (TypeScript)
+├── scripts/              Wallet minting
 ├── exercises/
-│   └── typescript/       All exercises live here
-├── solutions/
-│   └── typescript/       Complete solutions (solutions branch)
+│   ├── js/               JavaScript exercises
+│   ├── python/           Python exercises
+│   └── java/             Java exercises
 ├── wallets.json          Auto-generated on first Codespace start
 └── README.md
 ```
+
+Complete solutions live on the `solutions` branch.
 
 ---
 
@@ -34,14 +36,14 @@ Click the Codespaces button above and wait for the environment to finish startin
 
 The Codespace automatically:
 
-- installs TypeScript and Node.js dependencies
+- installs JavaScript, Python, and Java dependencies
 - creates two funded XRPL Testnet wallets
 - saves them to `wallets.json`
 
 If wallet minting fails on startup, re-run it manually:
 
 ```bash
-npx ts-node scripts/mint-wallets.ts
+node scripts/mint-wallets.js
 ```
 
 ---
@@ -58,7 +60,21 @@ If your Codespace is stopped and restarted between exercises, do not re-run the 
 > ⚠️ **Important:**
 > - These are Testnet wallets only
 > - Never reuse Testnet seeds on Mainnet
-> - You can re-mint them with `npx ts-node scripts/mint-wallets.ts`
+> - You can re-mint them with `node scripts/mint-wallets.js`
+
+---
+
+## Pick a language
+
+Choose the language you are most comfortable with. All exercises cover the same content.
+
+| Language | Folder | Run pattern |
+|---|---|---|
+| JavaScript | `exercises/js/` | `node file-name.js` |
+| Python | `exercises/python/` | `python file_name.py` |
+| Java | `exercises/java/` | `mvn compile exec:java -Dexec.mainClass="academy.xrpl.ClassName"` |
+
+> Java dependencies are downloaded on the first `mvn compile`, which can take a few minutes. Run it once before the coding session starts.
 
 ---
 
@@ -67,7 +83,9 @@ If your Codespace is stopped and restarted between exercises, do not re-run the 
 ### Day 1: Send XRP
 
 ```bash
-cd exercises/typescript && npx ts-node day1-send-xrp.ts
+cd exercises/js && node day1-send-xrp.js
+cd exercises/python && python day1_send_xrp.py
+cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day1SendXrp"
 ```
 
 Success signal: `tesSUCCESS` and an Explorer link.
@@ -75,7 +93,9 @@ Success signal: `tesSUCCESS` and an Explorer link.
 ### Homework: NFT Lifecycle
 
 ```bash
-cd exercises/typescript && npx ts-node homework-nft.ts
+cd exercises/js && node homework-nft.js
+cd exercises/python && python homework_nft.py
+cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.HomeworkNft"
 ```
 
 Success signal: NFT mint succeeds, appears on-chain, then is burned.
@@ -85,7 +105,9 @@ Success signal: NFT mint succeeds, appears on-chain, then is burned.
 ### Day 2 Step 1: Setup Account
 
 ```bash
-cd exercises/typescript && npx ts-node day2-step1-setup-account.ts
+cd exercises/js && node day2-step1-setup-account.js
+cd exercises/python && python day2_step1_setup_account.py
+cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step1SetupAccount"
 ```
 
 Success signal: issuer account enables `Default Ripple`.
@@ -93,7 +115,9 @@ Success signal: issuer account enables `Default Ripple`.
 ### Day 2 Step 2: Issue Token
 
 ```bash
-cd exercises/typescript && npx ts-node day2-step2-issue-token.ts
+cd exercises/js && node day2-step2-issue-token.js
+cd exercises/python && python day2_step2_issue_token.py
+cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step2IssueToken"
 ```
 
 Success signal: holder trust line exists and receives the issued token.
@@ -103,7 +127,9 @@ Success signal: holder trust line exists and receives the issued token.
 Prerequisite: complete Step 1 and Step 2 first.
 
 ```bash
-cd exercises/typescript && npx ts-node day2-step3-create-amm.ts
+cd exercises/js && node day2-step3-create-amm.js
+cd exercises/python && python day2_step3_create_amm.py
+cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step3CreateAmm"
 ```
 
 Success signal: `AMMCreate` succeeds and the pool exists on Testnet.
@@ -154,9 +180,9 @@ If you are blocked at any point:
 | Problem | What to do |
 |---|---|
 | Codespace takes a long time to start | This is normal, it can take several minutes on a cold start. Wait it out. |
-| Wallet minting fails | Retry `npx ts-node scripts/mint-wallets.ts` after a short wait. |
-| TypeScript compile error | Run `npm install` inside `exercises/typescript/`. |
-| WebSocket connection fails | Retry on a different network — corporate firewalls sometimes block WebSockets. |
+| Wallet minting fails | Retry `node scripts/mint-wallets.js` after a short wait. |
+| Java build is slow on first run | Run `mvn compile` once and wait for dependencies to download. |
+| WebSocket connection fails | Retry on a different network, corporate firewalls sometimes block WebSockets. |
 | Day 2 Step 3 fails | Make sure you completed Step 1 and Step 2 first, using the same wallets. |
 
 ---
@@ -197,17 +223,19 @@ This copies the solution files into your `solutions/` folder without overwriting
 
 ### Exercise-by-exercise links
 
-| Exercise | Learning Portal | XRPL Docs | SDK |
+| Exercise | Learning Portal | XRPL Docs | SDKs |
 |---|---|---|---|
-| `day1-send-xrp` | [Create Accounts and Send XRP](https://learn.xrpl-commons.org/course/blockchain-foundations-for-web2-developers/lesson/create-accounts-and-send-xrp/) | [Payment transaction](https://xrpl.org/docs/references/protocol/transactions/types/payment) | [xrpl.js](https://js.xrpl.org) |
-| `homework-nft` | [Mint and Burn NFTs](https://learn.xrpl-commons.org/course/code-with-the-xrpl/lesson/mint-and-burn-nfts/) | [NFTokenMint](https://xrpl.org/docs/references/protocol/transactions/types/nftokenmint), [NFTokenBurn](https://xrpl.org/docs/references/protocol/transactions/types/nftokenburn) | [xrpl.js](https://js.xrpl.org) |
-| `day2-step1-setup-account` | [Code with XRPL](https://learn.xrpl-commons.org/course/code-with-the-xrpl/) | [AccountSet transaction](https://xrpl.org/docs/references/protocol/transactions/types/accountset) | [xrpl.js](https://js.xrpl.org) |
-| `day2-step2-issue-token` | [Create Trust Line and Send Currency](https://learn.xrpl-commons.org/course/code-with-the-xrpl/lesson/create-trustline-and-send-currency/) | [TrustSet](https://xrpl.org/docs/references/protocol/transactions/types/trustset), [Payment](https://xrpl.org/docs/references/protocol/transactions/types/payment) | [xrpl.js](https://js.xrpl.org) |
-| `day2-step3-create-amm` | [What is an AMM?](https://learn.xrpl-commons.org/course/deep-dive-into-xrpl-defi/lesson/what-is-an-automated-market-maker-amm/) | [AMMCreate](https://xrpl.org/docs/references/protocol/transactions/types/ammcreate), [amm_info](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/amm_info) | [xrpl.js](https://js.xrpl.org) |
+| `day1-send-xrp` | [Create Accounts and Send XRP](https://learn.xrpl-commons.org/course/blockchain-foundations-for-web2-developers/lesson/create-accounts-and-send-xrp/) | [Payment transaction](https://xrpl.org/docs/references/protocol/transactions/types/payment) | [xrpl.js](https://js.xrpl.org), [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/) |
+| `homework-nft` | [Mint and Burn NFTs](https://learn.xrpl-commons.org/course/code-with-the-xrpl/lesson/mint-and-burn-nfts/) | [NFTokenMint](https://xrpl.org/docs/references/protocol/transactions/types/nftokenmint), [NFTokenBurn](https://xrpl.org/docs/references/protocol/transactions/types/nftokenburn) | [xrpl.js](https://js.xrpl.org), [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/) |
+| `day2-step1-setup-account` | [Code with XRPL](https://learn.xrpl-commons.org/course/code-with-the-xrpl/) | [AccountSet transaction](https://xrpl.org/docs/references/protocol/transactions/types/accountset) | [xrpl.js](https://js.xrpl.org), [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/), [xrpl4j](https://github.com/XRPLF/xrpl4j) |
+| `day2-step2-issue-token` | [Create Trust Line and Send Currency](https://learn.xrpl-commons.org/course/code-with-the-xrpl/lesson/create-trustline-and-send-currency/) | [TrustSet](https://xrpl.org/docs/references/protocol/transactions/types/trustset), [Payment](https://xrpl.org/docs/references/protocol/transactions/types/payment) | [xrpl.js](https://js.xrpl.org), [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/), [xrpl4j](https://github.com/XRPLF/xrpl4j) |
+| `day2-step3-create-amm` | [What is an AMM?](https://learn.xrpl-commons.org/course/deep-dive-into-xrpl-defi/lesson/what-is-an-automated-market-maker-amm/) | [AMMCreate](https://xrpl.org/docs/references/protocol/transactions/types/ammcreate), [amm_info](https://xrpl.org/docs/references/http-websocket-apis/public-api-methods/path-and-order-book-methods/amm_info) | [xrpl.js](https://js.xrpl.org), [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/), [xrpl4j](https://github.com/XRPLF/xrpl4j) |
 
 ### SDKs
 
 - [xrpl.js docs](https://js.xrpl.org) and [xrpl.js repo](https://github.com/XRPLF/xrpl.js)
+- [xrpl-py docs](https://xrpl-py.readthedocs.io/en/stable/) and [xrpl-py repo](https://github.com/XRPLF/xrpl-py)
+- [xrpl4j repo](https://github.com/XRPLF/xrpl4j), Java library and examples
 - [xrpl-connect](https://github.com/XRPL-Commons/xrpl-connect), XRPL Commons' wallet connection toolkit
 - [XRPLF GitHub](https://github.com/XRPLF), SDKs, examples, and core project source
 
@@ -218,6 +246,8 @@ This copies the solution files into your `solutions/` folder without overwriting
 - [XRPL Commons Learning Portal](https://learn.xrpl-commons.org/)
 - [XRPL Docs](https://xrpl.org/docs)
 - [xrpl.js](https://js.xrpl.org)
+- [xrpl-py](https://xrpl-py.readthedocs.io/en/stable/)
+- [xrpl4j](https://github.com/XRPLF/xrpl4j)
 - [XRPLF GitHub Organization](https://github.com/XRPLF)
 - [XRPL Dev Portal Repo](https://github.com/XRPLF/xrpl-dev-portal)
 - [XRPL Testnet Explorer](https://testnet.xrpl.org)
