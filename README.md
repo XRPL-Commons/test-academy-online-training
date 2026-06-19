@@ -60,7 +60,7 @@ If your Codespace is stopped and restarted between exercises, it will re-mint wa
 > ⚠️ **Important:**
 > - These are Testnet wallets only
 > - Never reuse Testnet seeds on Mainnet
-> - You can re-mint them with `node scripts/mint-wallets.js`
+> - If you must re-mint, run `node scripts/mint-wallets.js`, but note this will reset your on-chain state (trust lines, AMM pools, etc.)
 
 ---
 
@@ -70,11 +70,16 @@ Choose the language you are most comfortable with. All exercises cover the same 
 
 | Language | Folder | Run pattern |
 |---|---|---|
-| JavaScript | `exercises/js/` | `node file-name.js` |
-| Python | `exercises/python/` | `python file_name.py` |
-| Java | `exercises/java/` | `mvn compile exec:java -Dexec.mainClass="academy.xrpl.ClassName"` |
+| JavaScript | `exercises/js/` | `node exercises/js/file-name.js` |
+| Python | `exercises/python/` | `python exercises/python/file_name.py` |
+| Java | `exercises/java/` | `cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.ClassName"` |
 
 > Java dependencies are downloaded on the first `mvn compile`, which can take a few minutes. Run it once before the coding session starts.
+
+> **Java users:** before running each exercise, reset your terminal to the repo root first:
+> ```bash
+> cd ~ && cd /workspaces/dev-training-june-2026
+> ```
 
 ---
 
@@ -83,8 +88,8 @@ Choose the language you are most comfortable with. All exercises cover the same 
 ### Day 1: Send XRP
 
 ```bash
-cd exercises/js && node day1-send-xrp.js
-cd exercises/python && python day1_send_xrp.py
+node exercises/js/day1-send-xrp.js
+python exercises/python/day1_send_xrp.py
 cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day1SendXrp"
 ```
 
@@ -93,8 +98,8 @@ Success signal: `tesSUCCESS` and an Explorer link.
 ### Homework: NFT Lifecycle
 
 ```bash
-cd exercises/js && node homework-nft.js
-cd exercises/python && python homework_nft.py
+node exercises/js/homework-nft.js
+python exercises/python/homework_nft.py
 cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.HomeworkNft"
 ```
 
@@ -105,8 +110,8 @@ Success signal: NFT mint succeeds, appears on-chain, then is burned.
 ### Day 2 Step 1: Setup Account
 
 ```bash
-cd exercises/js && node day2-step1-setup-account.js
-cd exercises/python && python day2_step1_setup_account.py
+node exercises/js/day2-step1-setup-account.js
+python exercises/python/day2_step1_setup_account.py
 cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step1SetupAccount"
 ```
 
@@ -115,8 +120,8 @@ Success signal: issuer account enables `Default Ripple`.
 ### Day 2 Step 2: Issue Token
 
 ```bash
-cd exercises/js && node day2-step2-issue-token.js
-cd exercises/python && python day2_step2_issue_token.py
+node exercises/js/day2-step2-issue-token.js
+python exercises/python/day2_step2_issue_token.py
 cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step2IssueToken"
 ```
 
@@ -127,8 +132,8 @@ Success signal: holder trust line exists and receives the issued token.
 Prerequisite: complete Step 1 and Step 2 first.
 
 ```bash
-cd exercises/js && node day2-step3-create-amm.js
-cd exercises/python && python day2_step3_create_amm.py
+node exercises/js/day2-step3-create-amm.js
+python exercises/python/day2_step3_create_amm.py
 cd exercises/java && mvn compile exec:java -Dexec.mainClass="academy.xrpl.Day2Step3CreateAmm"
 ```
 
@@ -140,7 +145,7 @@ Success signal: `AMMCreate` succeeds and the pool exists on Testnet.
 
 ### Day 1 — June 22, 2026
 
-| Time (CET) | Activity | Exercise |
+| Time (CEST) | Activity | Exercise |
 |---|---|---|
 | 15:00 – 15:30 | Welcome & intro | — |
 | 15:30 – 16:30 | Blockchain 101 + quiz | — |
@@ -151,7 +156,7 @@ Success signal: `AMMCreate` succeeds and the pool exists on Testnet.
 
 ### Day 2 — June 23, 2026
 
-| Time (CET) | Activity | Exercise |
+| Time (CEST) | Activity | Exercise |
 |---|---|---|
 | 15:00 – 15:30 | Greeting & homework review | — |
 | 15:30 – 15:55 | Keynote: Spawning Liquidity on the XRP Ledger + quiz | — |
@@ -182,6 +187,7 @@ If you are blocked at any point:
 | Codespace takes a long time to start | This is normal, it can take several minutes on a cold start. Wait it out. |
 | Wallet minting fails | Retry `node scripts/mint-wallets.js` after a short wait. |
 | Java build is slow on first run | Run `mvn compile` once and wait for dependencies to download. |
+| Java `cd` error between exercises | Reset your terminal to the repo root: `cd ~ && cd /workspaces/dev-training-june-2026` |
 | WebSocket connection fails | Retry on a different network, corporate firewalls sometimes block WebSockets. |
 | Day 2 Step 3 fails | Make sure you completed Step 1 and Step 2 first, using the same wallets. |
 
