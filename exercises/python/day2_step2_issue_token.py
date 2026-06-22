@@ -16,7 +16,7 @@ from xrpl.wallet import Wallet
 from xrpl.models.transactions import TrustSet, Payment
 from xrpl.models.amounts import IssuedCurrencyAmount
 from xrpl.transaction import submit_and_wait
-import sys; sys.path.insert(0, '../../scripts')
+import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'scripts'))
 from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'

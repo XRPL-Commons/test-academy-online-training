@@ -19,7 +19,7 @@ from xrpl.models.requests import AMMInfo
 from xrpl.models.currencies import IssuedCurrency, XRP
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import xrp_to_drops
-import sys; sys.path.insert(0, '../../scripts')
+import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'scripts'))
 from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
