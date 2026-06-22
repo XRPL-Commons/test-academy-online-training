@@ -18,7 +18,7 @@ from xrpl.models.transactions import NFTokenMint, NFTokenBurn
 from xrpl.models.requests import AccountNFTs
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import str_to_hex
-import sys; sys.path.insert(0, '../../scripts')
+import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'scripts'))
 from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'

@@ -15,7 +15,7 @@ from xrpl.wallet import Wallet
 from xrpl.models.transactions import Payment
 from xrpl.transaction import submit_and_wait
 from xrpl.utils import xrp_to_drops
-import sys; sys.path.insert(0, '../../scripts')
+import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'scripts'))
 from notify_progress import notify_progress
 
 TESTNET_URL = 'wss://s.altnet.rippletest.net:51233'
@@ -34,16 +34,15 @@ print(f"Receiver: {receiver.address}")
 with WebsocketClient(TESTNET_URL) as client:
 
     # ╔══════════════════════════════════════════════════════════════════╗
-    # ║ TODO 1: Create a Payment transaction                            ║
+    # ║ TODO 1: Create a Payment transaction                             ║
     # ║                                                                  ║
     # ║ HINT: Payment(account=sender.address,                            ║
     # ║              amount=xrp_to_drops(10),                            ║
-    # ║              destination=receiver.address)                        ║
+    # ║              destination=receiver.address)                       ║
     # ╚══════════════════════════════════════════════════════════════════╝
-    payment_tx = None  # Replace with Payment(...)
 
     # ╔══════════════════════════════════════════════════════════════════╗
-    # ║ TODO 2: Submit the transaction and print the result             ║
+    # ║ TODO 2: Submit the transaction and print the result              ║
     # ║                                                                  ║
     # ║ HINT: result = submit_and_wait(payment_tx, client, sender)       ║
     # ║       print(result)                                              ║
